@@ -1,7 +1,7 @@
 services:
     restapi:
         container_name: restapi
-        build: ./Rest-API
+        build: ./Main
         image: rest-api
         ports:
             - "8080:8080"

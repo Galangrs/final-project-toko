@@ -1,10 +1,9 @@
 FROM golang
 
-WORKDIR /Bot-Discord
+WORKDIR /Main
 
 COPY . .
 
-RUN go mod download
-
+RUN go mod download && go mod tidy
 
 CMD ["go", "run", "main.go"]

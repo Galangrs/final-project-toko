@@ -43,6 +43,11 @@ func PostTransactionsRequest(db *gorm.DB) gin.HandlerFunc {
 			c.JSON(http.StatusUnauthorized, gin.H{"error": "Insufficient stock"})
 			return
 		}
+		if product.Stock == 0 {
+			tx.Rollback()
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "stock is 0"})
+			return
+		}
 		product.Stock -= request.Quantity
 
 		var user model.Users
